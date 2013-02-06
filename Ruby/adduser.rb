@@ -16,6 +16,21 @@ end
 $opts.on('--country COUNTRY', "User's country") do |v|
     $o.country = v
 end
+$opts.on('--organization ORGANIZATION') do |v|
+    $o.organization = v
+end
+$opts.on('--position POSITION') do |v|
+    $o.position = v
+end
+$opts.on('--tel TEL') do |v|
+    $o.tel = v
+end
+$opts.on('--password PASSWORD') do |v|
+    $o.password = v
+end
+$opts.on('--role ROLE', "The role must be either Member or Leader", "Default member") do |v|
+    $o.role = v
+end
 
 parse_options([:country])
     
@@ -27,7 +42,7 @@ if (ARGV.length < 1)
     exit(1)
 end
 
-$o.params[:email] = ARGV[0]
+$o.email = ARGV[0]
 
 res = exec_api_call("adduser")
 pp res.body[0 .. 150]
