@@ -40,6 +40,9 @@ $opts = OptionParser.new do |opts|
     opts.on('-d', '--debug', "Show debug output from http request", "  Default: #{$o.debug}") do |d|
         $o.debug = d
     end
+    opts.on('--full-body', "Print full body output (otherwise print only 150 chars of result)") do |b|
+        $o.fullBody = b
+    end
     opts.on('-p', '--params PARAMS', "Additional api parameters, in name=value,name=value,... format") do |p|
         $o.params = Hash[*p.split(/=|,/)]
     end
@@ -102,5 +105,9 @@ if __FILE__==$0
     end
     
     res = exec_api_call(ARGV[0])
-    puts res.body[0 .. 150]
+    if ($o.fullBody)
+        puts res.body
+    else
+        puts res.body[0..150]
+    end
 end
