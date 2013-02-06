@@ -102,5 +102,5 @@ if __FILE__==$0
     end
     
     res = exec_api_call(ARGV[0])
-    pp res.body[0 .. 150]
+    puts res.body[0 .. 150]
 end

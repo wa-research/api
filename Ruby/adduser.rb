@@ -45,4 +45,4 @@ end
 $o.email = ARGV[0]
 
 res = exec_api_call("adduser")
-pp res.body[0 .. 150]
+puts res.body[0 .. 150]
