@@ -83,7 +83,7 @@ def exec_api_call(operation)
     time, sig = api.sign(operation, $o)
     url = URI.join($o.server, $o.url, operation)
     
-    pp url,time,sig if $o.verbose
+    #pp url,time,sig if $o.verbose
 
     $o.params['site-id'] = $o.user
     $o.params['signature'] = sig
