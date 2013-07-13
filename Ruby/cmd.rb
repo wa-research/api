@@ -92,8 +92,9 @@ def exec_api_call(operation)
     res = nil
     req = Net::HTTP::Post.new(url.path)
     req.set_form_data $o.params
-
-    Net::HTTP.start(url.host, url.port) do |http|
+    use_ssl = $o.server[0..4]=='https'
+    
+    Net::HTTP.start(url.host, url.port, :use_ssl => use_ssl, :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
         res = http.request(req)
         case res
             when Net::HTTPRedirection
