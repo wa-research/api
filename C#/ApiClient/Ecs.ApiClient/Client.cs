@@ -10,28 +10,40 @@ namespace Ecs.Api
     public class Client
     {
         ThreadLocal<WebClientWithMultivalueKeysAndGzipDecompression> _webClient = new ThreadLocal<WebClientWithMultivalueKeysAndGzipDecompression>(() => new WebClientWithMultivalueKeysAndGzipDecompression());
-        string _user, _key, _url;
 
         public Client() { }
 
-        public Client(string url, string user, string key)
+        public Client(string url, string key, string secret)
         {
-            _url = url;
-            _user = user;
-            _key = key;
+            Url = url;
+            Key = key;
+            Secret = secret;
         }
+
+
+        public bool Verbose { get; set; }
+        public string Key { get; set; }
+        public string Secret { get; set; }
+        public string Url { get; set; }
 
         public string PostSignedRequest(NameValueCollection payload, string operation)
         {
-            return PostSignedRequest(payload, operation, _url, _user, _key);
+            return PostSignedRequest(payload, operation, Url);
         }
 
-        public string PostSignedRequest(NameValueCollection payload, string operation, string url, string user, string key)
+        public string PostSignedRequest(NameValueCollection payload, string operation, string url)
         {
-            string apiUrl = FormatApiUrl(url, operation, user, key);
+            return PostSignedRequest(payload, operation, url, Key, Secret);
+        }
+
+        public string PostSignedRequest(NameValueCollection payload, string operation, string url, string key, string secret)
+        {
+            string apiUrl = FormatApiUrl(url, operation, key, secret);
             try {
                 if (apiUrl != null) {
-                    System.Console.WriteLine("Posting to {0}", apiUrl);
+                    if (Verbose) {
+                        System.Console.WriteLine("Posting to {0}", apiUrl);
+                    }
                     string response = Encoding.UTF8.GetString(_webClient.Value.UploadValues(apiUrl, payload));
                     return response;
                 } else {
