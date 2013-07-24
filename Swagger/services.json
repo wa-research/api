@@ -1,0 +1,22 @@
+{
+    "swaggerVersion": "1.1",
+    "basePath": "http://ecs.wa-research.ch/api",
+    "apis": [
+        {
+            "path": "/email",
+            "description": ""
+        },
+        {
+            "path": "/members",
+            "description": ""
+        },
+        {
+            "path": "/messages",
+            "description": ""
+        },
+        {
+            "path": "/tags",
+            "description": ""
+        }
+    ]
+}
