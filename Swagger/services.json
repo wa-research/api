@@ -3,19 +3,19 @@
     "basePath": "http://ecs.wa-research.ch/api",
     "apis": [
         {
-            "path": "/email",
+            "path": "/email.json",
             "description": ""
         },
         {
-            "path": "/members",
+            "path": "/members.json",
             "description": ""
         },
         {
-            "path": "/messages",
+            "path": "/messages.json",
             "description": ""
         },
         {
-            "path": "/tags",
+            "path": "/tags.json",
             "description": ""
         }
     ]
