@@ -30,7 +30,6 @@ namespace Ecs.Api.Commander
             try {
                 var stats = client.Get<CommunityCoreStats>(new CommunitySummaryRequest());
                 client.AllowAutoRedirect = true;
-                Console.WriteLine(client.SyncReplyBaseUri);
                 Console.WriteLine(stats.Dump());
             } catch (Exception e) {
                 Console.WriteLine("ERROR: {0}", e.Message);
